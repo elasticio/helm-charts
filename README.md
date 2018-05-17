@@ -1,2 +1,3 @@
-# helm-charts
+# Helm Charts
+
 Helm charts for the elastic.io platform
