@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   fluentd:
   - apiVersion: v1
-    created: 2018-05-18T17:29:10.312368571+03:00
+    created: 2018-05-18T18:08:24.413398933+03:00
     description: Fluentd is an open source data collector for collecting logs from
       our services
     digest: dce2843d17bc386de0115a001e24da3cb0b1e1a8d0dd34286dc6c2636c6db839
@@ -18,6 +18,6 @@ entries:
     name: fluentd
     tillerVersion: '>=2.9.0'
     urls:
-    - https://helm-charts.elastic.io/fluentd-0.1.0.tgz
+    - http://127.0.0.1:8879/fluentd-0.1.0.tgz
     version: 0.1.0
-generated: 2018-05-18T17:29:10.311731842+03:00
+generated: 2018-05-18T18:08:24.412905266+03:00
