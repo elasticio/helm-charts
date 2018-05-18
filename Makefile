@@ -1,6 +1,6 @@
 .PHONY: $(sort $(dir $(wildcard */)))
 
-all: clean
+all: fluentd
 
 fluentd: lint-fluentd build-fluentd
 
@@ -10,6 +10,7 @@ lint-%:
 build-%:
 	if [ -f $*/requirements.yml ]; then helm dependency update $*; fi
 	helm package -d docs $*
+	helm repo index docs --url https://helm-charts.elastic.io
 
 clean:
 	find . -name "*.tgz" -exec rm '{}' +
