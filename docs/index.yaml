@@ -1,13 +1,74 @@
 apiVersion: v1
 entries:
+  admiral:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.492672088+03:00
+    description: The commander of the elastic.io fleet
+    digest: 084d86131fe33b6e06d10346254bc6b6bd2e0c14edaaac60294833f5eb2a428a
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - admiral
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: admiral
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/admiral-0.1.0.tgz
+    version: 0.1.0
+  api:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.493145973+03:00
+    description: API for elastic.io Cloud Integration Platform
+    digest: 3b5d01814bef24b1378dd65c229836503557fa000a5d8a4065c0a7985151b194
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - api
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: api
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/api-0.1.0.tgz
+    version: 0.1.0
+  cluster:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.496034522+03:00
+    description: The whole installation of all required apps for the elastic.io cluster
+    digest: 8e8f9443f1a7891ff06e597a8e517e3cbb18b1dfc6d64244aa8734e62b0e7b46
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - cluster
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: cluster
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/cluster-0.1.0.tgz
+    version: 0.1.0
   fluentd:
   - apiVersion: v1
-    created: 2018-05-18T18:08:24.413398933+03:00
+    created: 2018-05-19T18:13:43.496521387+03:00
     description: Fluentd is an open source data collector for collecting logs from
       our services
-    digest: dce2843d17bc386de0115a001e24da3cb0b1e1a8d0dd34286dc6c2636c6db839
+    digest: 54ba80687aa4f56c15ba430e548be20d3e837479c85a5e1a580a8008dcaa3928
     engine: gotpl
     home: https://www.fluentd.org
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
     keywords:
     - fluentd
     kubeVersion: '>=1.10.0'
@@ -18,6 +79,167 @@ entries:
     name: fluentd
     tillerVersion: '>=2.9.0'
     urls:
-    - http://127.0.0.1:8879/fluentd-0.1.0.tgz
+    - https://helm-charts.elastic.io/fluentd-0.1.0.tgz
     version: 0.1.0
-generated: 2018-05-18T18:08:24.412905266+03:00
+  frontend:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.496998175+03:00
+    description: elastic.io frontend
+    digest: e64ed714e658cf00c8a42b8dc48e621a93c8038c679f4582c7d6a1ece5515016
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - frontend
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: frontend
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/frontend-0.1.0.tgz
+    version: 0.1.0
+  gitreceiver:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.497444538+03:00
+    description: Docker image that receives git pushes
+    digest: 2f699af705f61fdbb8b816fde17454a2ff6bda463b53e5346685890394e31cf0
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - gitreceiver
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: gitreceiver
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/gitreceiver-0.1.0.tgz
+    version: 0.1.0
+  ingress:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.498067136+03:00
+    description: elastic.io loadbalancer based on Ingress controller
+    digest: 9c4c65fb3571083c6b702a7d551ccc615ab809f5b2117d852e63c3a419721f70
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - ingress
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: ingress
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/ingress-0.1.0.tgz
+    version: 0.1.0
+  lookout:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.498507109+03:00
+    description: A multiplexer for gathering execution statistics across all flow
+      executions
+    digest: 97588405e94f05de7191e416ce0a11ed6b04f778a365042172c517b36ff71ac1
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - lookout
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: lookout
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/lookout-0.1.0.tgz
+    version: 0.1.0
+  platform-storage-slugs:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.499027708+03:00
+    description: Slugs storage for the elastic.io platform
+    digest: 5d14d40095cbd7e858b639cefe3a769ed743e2e700258cf6d47d8e23ab9acd87
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - platform-storage-slugs
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: platform-storage-slugs
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/platform-storage-slugs-0.1.0.tgz
+    version: 0.1.0
+  scheduler:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.499442385+03:00
+    description: elastic.io scheduler for polling flows
+    digest: fc6bc7cded2c7067598d8b9f10078d4488211c159a5ed1fff678d33cfc2c6552
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - scheduler
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: scheduler
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/scheduler-0.1.0.tgz
+    version: 0.1.0
+  steward:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.49993827+03:00
+    description: API for elastic.io files storage
+    digest: 3c8929b15db47e10e04a2b4c861f5679826060f53b9d7dfdfe799c098f993564
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - steward
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: steward
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/steward-0.1.0.tgz
+    version: 0.1.0
+  webhooks:
+  - apiVersion: v1
+    created: 2018-05-19T18:13:43.500383267+03:00
+    description: elastic.io webhooks
+    digest: 89cfd9451c44f633ef2126bdf01be400a2424a6d7e608a91c9e186a7b7088f17
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - webhooks
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: webhooks
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/webhooks-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-05-19T18:13:43.491272413+03:00

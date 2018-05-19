@@ -1,0 +1,36 @@
+dependencies:
+- name: admiral
+  repository: file://../admiral
+  version: 0.1.0
+- name: api
+  repository: file://../api
+  version: 0.1.0
+- name: fluentd
+  repository: file://../fluentd
+  version: 0.1.0
+- name: frontend
+  repository: file://../frontend
+  version: 0.1.0
+- name: gitreceiver
+  repository: file://../gitreceiver
+  version: 0.1.0
+- name: ingress
+  repository: file://../ingress
+  version: 0.1.0
+- name: lookout
+  repository: file://../lookout
+  version: 0.1.0
+- name: platform-storage-slugs
+  repository: file://../platform-storage-slugs
+  version: 0.1.0
+- name: scheduler
+  repository: file://../scheduler
+  version: 0.1.0
+- name: steward
+  repository: file://../steward
+  version: 0.1.0
+- name: webhooks
+  repository: file://../webhooks
+  version: 0.1.0
+digest: sha256:cf16c9cb2b2f85a17657f8c46d4855e6868bf7f7bcad442ef0bb8396dafbb4c3
+generated: 2018-05-19T18:02:42.70111536+03:00

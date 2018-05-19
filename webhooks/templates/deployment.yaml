@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhooks
+  labels:
+    heritage: '{{ .Release.Service }}'
+    release: '{{ .Release.Name }}'
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+    component: webhooks
+    app: webhooks
+  annotations:
+    deployment.kubernetes.io/revision: '2'
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webhooks
+  template:
+    metadata:
+      name: webhooks
+      labels:
+        app: webhooks
+    spec:
+      containers:
+      - name: webhooks
+        image: 'elasticio/webhooks:{{ .Values.revision | default "master" }}'
+        envFrom:
+        - secretRef:
+            name: elasticio
+        env:
+        - name: APP_NAME
+          value: webhooks
+        - name: PORT_GATEWAY
+          value: '5000'
+        - name: LOG_LEVEL
+          value: trace
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          httpGet:
+            port: 5000
+            path: "/healthcheck"
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          httpGet:
+            port: 5000
+            path: "/healthcheck"
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 0.2
+          requests:
+            memory: 512Mi
+            cpu: 0.1
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      imagePullSecrets:
+      - name: elasticiodevops
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        elasticio-role: '{{ .Release.Namespace }}'
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

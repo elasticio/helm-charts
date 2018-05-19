@@ -6,6 +6,7 @@ description: Fluentd is an open source data collector for collecting logs from o
 keywords:
   - fluentd
 home: https://www.fluentd.org
+icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
 maintainers:
   - name: Eugene Obrezkov
     email: ghaiklor@gmail.com

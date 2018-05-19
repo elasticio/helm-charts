@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler
+  labels:
+    heritage: '{{ .Release.Service }}'
+    release: '{{ .Release.Name }}'
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+    component: scheduler
+    app: scheduler
+  annotations:
+    deployment.kubernetes.io/revision: '2'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler
+  template:
+    metadata:
+      name: scheduler
+      labels:
+        app: scheduler
+    spec:
+      containers:
+      - name: scheduler
+        image: 'elasticio/scheduler:{{ .Values.revision | default "master" }}'
+        envFrom:
+        - secretRef:
+            name: elasticio
+        env:
+        - name: APP_NAME
+          value: scheduler
+        - name: PORT_SCHEDULER
+          value: '5001'
+        - name: LOG_LEVEL
+          value: trace
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          httpGet:
+            port: 5001
+            path: "/"
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 0.5
+          requests:
+            memory: 256Mi
+            cpu: 0.1
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      imagePullSecrets:
+      - name: elasticiodevops
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        elasticio-role: '{{ .Release.Namespace }}'
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

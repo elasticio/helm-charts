@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admiral
+  labels:
+    heritage: '{{ .Release.Service }}'
+    release: '{{ .Release.Name }}'
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+    component: admiral
+    app: admiral
+  annotations:
+    deployment.kubernetes.io/revision: '2'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admiral
+  template:
+    metadata:
+      name: admiral
+      labels:
+        app: admiral
+    spec:
+      containers:
+      - name: admiral
+        image: 'elasticio/admiral:{{ .Values.revision | default "master" }}'
+        envFrom:
+        - secretRef:
+            name: elasticio
+        env:
+        - name: APP_NAME
+          value: admiral
+        - name: PORT_ADMIRAL
+          value: '12000'
+        - name: LOG_LEVEL
+          value: trace
+        - name: RABBITMQ_URI
+          valueFrom:
+            secretKeyRef:
+              name: elasticio
+              key: AMQP_URI
+        - name: KUBERNETES_TASKS_NODE_LABEL_KEY
+          value: elasticio-role
+        - name: KUBERNETES_TASKS_NODE_LABEL_VALUE
+          value: tasks
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          httpGet:
+            port: 12000
+            path: "/healthcheck"
+        resources:
+          limits:
+            memory: 2048Mi
+            cpu: 1
+          requests:
+            memory: 512Mi
+            cpu: 1
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      serviceAccountName: admiral-account
+      imagePullSecrets:
+      - name: elasticiodevops
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        elasticio-role: '{{ .Release.Namespace }}'
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

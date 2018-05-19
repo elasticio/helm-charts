@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lookout
+  labels:
+    heritage: '{{ .Release.Service }}'
+    release: '{{ .Release.Name }}'
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+    component: lookout
+    app: lookout
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lookout
+  template:
+    metadata:
+      name: lookout
+      labels:
+        app: lookout
+    spec:
+      containers:
+      - name: lookout
+        image: 'elasticio/lookout:{{ .Values.revision | default "master" }}'
+        envFrom:
+        - secretRef:
+            name: elasticio
+        env:
+        - name: APP_NAME
+          value: lookout
+        - name: LOG_LEVEL
+          value: trace
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          httpGet:
+            port: 10000
+            path: "/healthcheck"
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 0.5
+          requests:
+            memory: 256Mi
+            cpu: 0.1
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      imagePullSecrets:
+      - name: elasticiodevops
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        elasticio-role: platform
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

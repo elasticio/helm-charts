@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: default-tenant-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - secretName: ingress-elasticio-cert
+    hosts:
+    - app-westeros.elastic.io
+    - api-westeros.elastic.io
+    - in-westeros.elastic.io
+    - petstore-westeros.elastic.io
+  rules:
+  - host: api-westeros.elastic.io
+    http:
+      paths:
+      - backend:
+          serviceName: api-service
+          servicePort: 9000
+  - host: app-westeros.elastic.io
+    http:
+      paths:
+      - backend:
+          serviceName: frontend-service
+          servicePort: 8000
+  - host: in-westeros.elastic.io
+    http:
+      paths:
+      - backend:
+          serviceName: webhooks-service
+          servicePort: 5000
+  - host: petstore-westeros.elastic.io
+    http:
+      paths:
+      - backend:
+          serviceName: petstore-api-service
+          servicePort: 8080

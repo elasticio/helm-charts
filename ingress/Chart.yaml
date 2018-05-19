@@ -1,0 +1,15 @@
+apiVersion: v1
+name: ingress
+version: "0.1.0"
+kubeVersion: ">=1.10.0"
+description: elastic.io loadbalancer based on Ingress controller
+keywords:
+  - ingress
+home: http://elastic.io
+icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+maintainers:
+  - name: Eugene Obrezkov
+    email: ghaiklor@gmail.com
+    url: http://ghaiklor.com
+engine: gotpl
+tillerVersion: ">=2.9.0"

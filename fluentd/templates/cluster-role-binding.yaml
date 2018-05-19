@@ -9,4 +9,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: eio-fluentd-account
-    namespace: platform
+    namespace: '{{ .Release.Namespace }}'

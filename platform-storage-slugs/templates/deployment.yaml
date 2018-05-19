@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-storage-slugs
+  labels:
+    heritage: '{{ .Release.Service }}'
+    release: '{{ .Release.Name }}'
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+    component: platform-storage-slugs
+    app: platform-storage-slugs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: platform-storage-slugs
+  template:
+    metadata:
+      name: platform-storage-slugs
+      labels:
+        app: platform-storage-slugs
+    spec:
+      containers:
+      - name: platform-storage-slugs
+        image: 'elasticio/platform-storage-slugs:{{ .Values.revision | default "master" }}'
+        envFrom:
+        - secretRef:
+            name: elasticio
+        env:
+        - name: APP_NAME
+          value: platform-storage-slugs
+        - name: LOG_LEVEL
+          value: trace
+        - name: ssh_port
+          value: '4022'
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 20
+          tcpSocket:
+            port: 80
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 0.5
+          requests:
+            memory: 256Mi
+            cpu: 0.1
+        volumeMounts:
+        - mountPath: "/home/nginx/data/www/slugs"
+          name: platform-storage-slugs-storage
+          subPath: slugs
+        - mountPath: "/home/nginx/data/www/steward"
+          name: platform-storage-slugs-storage
+          subPath: steward
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      imagePullSecrets:
+      - name: elasticiodevops
+      volumes:
+      - name: platform-storage-slugs-storage
+        persistentVolumeClaim:
+          claimName: platform-storage-slugs-volume-claim
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        elasticio-role: '{{ .Release.Namespace }}'
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
