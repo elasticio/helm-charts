@@ -1,43 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: admiral
+  name: {{ .Chart.Name }}
   labels:
-    heritage: '{{ .Release.Service }}'
-    release: '{{ .Release.Name }}'
-    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
-    component: admiral
-    app: admiral
-  annotations:
-    deployment.kubernetes.io/revision: '2'
+    app: {{ .Chart.Name }}
+    component: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: admiral
+      app: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
   template:
     metadata:
-      name: admiral
+      name: {{ .Chart.Name }}
       labels:
-        app: admiral
+        app: {{ .Chart.Name }}
+        release: {{ .Release.Name }}
     spec:
       containers:
-      - name: admiral
-        image: 'elasticio/admiral:{{ .Values.revision | default "master" }}'
+      - name: {{ .Chart.Name }}
+        image: elasticio/admiral:{{ .Values.image.tag }}
         envFrom:
         - secretRef:
-            name: elasticio
+            name: {{ .Values.envFromSecretRefName }}
         env:
         - name: APP_NAME
-          value: admiral
+          value: {{ .Chart.Name }}
         - name: PORT_ADMIRAL
-          value: '12000'
+          value: 12000
         - name: LOG_LEVEL
           value: trace
         - name: RABBITMQ_URI
           valueFrom:
             secretKeyRef:
-              name: elasticio
+              name: {{ .Values.envFromSecretRefName }}
               key: AMQP_URI
         - name: KUBERNETES_TASKS_NODE_LABEL_KEY
           value: elasticio-role
@@ -50,24 +50,21 @@ spec:
             port: 12000
             path: "/healthcheck"
         resources:
-          limits:
-            memory: 2048Mi
-            cpu: 1
-          requests:
-            memory: 512Mi
-            cpu: 1
+          {{ toYaml .Values.resources | indent 10 }}
         terminationMessagePath: "/dev/termination-log"
         terminationMessagePolicy: File
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           privileged: false
-      serviceAccountName: admiral-account
+          {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+          {{- end }}
       imagePullSecrets:
-      - name: elasticiodevops
+      - name: {{ .Values.image.pullSecretName }}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        elasticio-role: '{{ .Release.Namespace }}'
+        elasticio-role: platform
   strategy:
     type: RollingUpdate
     rollingUpdate:
