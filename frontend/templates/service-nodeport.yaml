@@ -9,12 +9,12 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  type: NodePort
   externalTrafficPolicy: Cluster
+  selector:
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
   ports:
   - port: 8000
     protocol: TCP
     targetPort: 8000
-  selector:
-    app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-  type: NodePort

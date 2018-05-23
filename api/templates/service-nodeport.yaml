@@ -9,14 +9,14 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  type: NodePort
   externalTrafficPolicy: Cluster
+  sessionAffinity: None
+  selector:
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
   ports:
   - name: '9000'
     port: 9000
     protocol: TCP
     targetPort: 9000
-  selector:
-    app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-  sessionAffinity: None
-  type: NodePort

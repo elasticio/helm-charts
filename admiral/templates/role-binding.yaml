@@ -2,12 +2,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: admiral-rolebinding
-  namespace: tasks
+  name: {{ .Chart.Name }}-rolebinding
+  namespace: {{ .Values.global.tasksNamespaceName | default "tasks" }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: admiral-role
+  name: {{ .Chart.Name }}-role
 subjects:
 - kind: ServiceAccount
   name: {{ .Values.serviceAccount.name }}

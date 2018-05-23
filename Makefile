@@ -8,7 +8,6 @@ cluster: build-cluster
 fluentd: build-fluentd
 frontend: build-frontend
 gitreceiver: build-gitreceiver
-ingress: build-ingress
 lookout: build-lookout
 platform-storage-slugs: build-platform-storage-slugs
 scheduler: build-scheduler
@@ -16,13 +15,13 @@ steward: build-steward
 webhooks: build-webhooks
 
 lint: lint-admiral lint-api lint-cluster lint-fluentd lint-frontend lint-gitreceiver
-lint: lint-ingress lint-lookout lint-platform-storage-slugs lint-scheduler
+lint: lint-lookout lint-platform-storage-slugs lint-scheduler
 lint: lint-steward lint-webhooks
 lint-%:
 	helm lint $*
 
 build: build-admiral build-api build-cluster build-fluentd build-frontend build-gitreceiver
-build: build-ingress build-lookout build-platform-storage-slugs build-scheduler
+build: build-lookout build-platform-storage-slugs build-scheduler
 build: build-steward build-webhooks
 build-%:
 	if [ -f $*/requirements.yaml ]; then helm dependency update $*; fi

@@ -9,14 +9,14 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  type: NodePort
+  sessionAffinity: None
   externalTrafficPolicy: Cluster
+  selector:
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
   ports:
   - name: '5000'
     port: 5000
     protocol: TCP
     targetPort: 5000
-  selector:
-    app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-  sessionAffinity: None
-  type: NodePort

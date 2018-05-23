@@ -16,4 +16,4 @@ rbac:
 
 serviceAccount:
   create: true
-  name: eio-fluentd-account
+  name: fluentd-account

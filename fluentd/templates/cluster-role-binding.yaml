@@ -2,11 +2,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: eio-fluentd-rolebinding
+  name: {{ .Chart.Name }}-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: eio-fluentd-role
+  name: {{ .Chart.Name }}-role
 subjects:
   - kind: ServiceAccount
     name: {{ .Values.serviceAccount.name }}

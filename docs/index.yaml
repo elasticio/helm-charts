@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   admiral:
   - apiVersion: v1
-    created: 2018-05-23T16:04:13.835482715+03:00
+    created: 2018-05-23T17:17:54.06213278+03:00
     description: The commander of the elastic.io fleet
-    digest: b42f7ca20006696a59cec8c9695d860dfa0293028a35ba053b6b6a9dd9d8b783
+    digest: de0a401dd4ed1ec82b339e3e8478ffde49c346254013dfdd6736c24ae844511a
     engine: gotpl
     home: http://elastic.io
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -22,9 +22,9 @@ entries:
     version: 0.1.0
   api:
   - apiVersion: v1
-    created: 2018-05-23T16:04:13.835736468+03:00
+    created: 2018-05-23T17:17:54.062393772+03:00
     description: API for elastic.io Cloud Integration Platform
-    digest: 37b2cf6e3e8ef568cd6a6bf4b8100fa62768b2c84e521bfa3cdb8521dba463a5
+    digest: 90715b11bcbc9ace2fdfb1657c7dde30df2c018618baf2c2b63a5c4119322bf9
     engine: gotpl
     home: http://elastic.io
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -42,9 +42,9 @@ entries:
     version: 0.1.0
   cluster:
   - apiVersion: v1
-    created: 2018-05-23T16:04:13.837306356+03:00
+    created: 2018-05-23T17:17:54.063890279+03:00
     description: The whole installation of all required apps for the elastic.io cluster
-    digest: bc35e2305fd8119a6f2ab2e3397752c70dc674ac97a9412202d24c0f4e087948
+    digest: aaaa85cae858d64b1c997c6ce00b9117854d79d03b25414af5e45ae2eed59d2c
     engine: gotpl
     home: http://elastic.io
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -62,10 +62,10 @@ entries:
     version: 0.1.0
   fluentd:
   - apiVersion: v1
-    created: 2018-05-23T16:04:13.837567832+03:00
+    created: 2018-05-23T17:17:54.064172216+03:00
     description: Fluentd is an open source data collector for collecting logs from
       our services
-    digest: 736ba411c002aa9029e464235a3abf110dd8267fa7746b878821cfa288571e6d
+    digest: 928ea29981162c2978dd2afb48f697e94787e4d97122186c71a23a4b8d95795d
     engine: gotpl
     home: https://www.fluentd.org
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -83,9 +83,9 @@ entries:
     version: 0.1.0
   frontend:
   - apiVersion: v1
-    created: 2018-05-23T16:04:13.837827974+03:00
+    created: 2018-05-23T17:17:54.064428396+03:00
     description: elastic.io frontend
-    digest: e72d0de8a610b272c04cf7f19df9c86a7495a04a63833b6a3bef26075c2294f7
+    digest: b571b67d215120d81f0504203b23df11b903a2f219071be1c4d29ea969eab017
     engine: gotpl
     home: http://elastic.io
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -103,7 +103,7 @@ entries:
     version: 0.1.0
   gitreceiver:
   - apiVersion: v1
-    created: 2018-05-23T16:04:13.838082103+03:00
+    created: 2018-05-23T17:17:54.06467386+03:00
     description: Docker image that receives git pushes
     digest: fb8a3d15c2cee3479f0da1aaf4d6bbf1c8d512fa9dcd94394ce31e6b71b3af93
     engine: gotpl
@@ -121,4 +121,105 @@ entries:
     urls:
     - https://helm-charts.elastic.io/gitreceiver-0.1.0.tgz
     version: 0.1.0
-generated: 2018-05-23T16:04:13.83492213+03:00
+  lookout:
+  - apiVersion: v1
+    created: 2018-05-23T17:17:54.064899088+03:00
+    description: A multiplexer for gathering execution statistics across all flow
+      executions
+    digest: a4d2d50da8a82f8d4cad486bc0415106dcd96ebac76d5a9004cba45b5287fc36
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - lookout
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: lookout
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/lookout-0.1.0.tgz
+    version: 0.1.0
+  platform-storage-slugs:
+  - apiVersion: v1
+    created: 2018-05-23T17:17:54.065156686+03:00
+    description: Slugs storage for the elastic.io platform
+    digest: 6592184c98a9dd606c1a1f4e5f689942ad70121f614215879f4032646b4ba6af
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - platform-storage-slugs
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: platform-storage-slugs
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/platform-storage-slugs-0.1.0.tgz
+    version: 0.1.0
+  scheduler:
+  - apiVersion: v1
+    created: 2018-05-23T17:17:54.065396132+03:00
+    description: elastic.io scheduler for polling flows
+    digest: c72789e132db43a1dff38b5769279aba93fa1753b869a7fc9b6d3e98c700ffaf
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - scheduler
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: scheduler
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/scheduler-0.1.0.tgz
+    version: 0.1.0
+  steward:
+  - apiVersion: v1
+    created: 2018-05-23T17:17:54.065645391+03:00
+    description: API for elastic.io files storage
+    digest: 514f2e06326b3ba0f74069b97cb8876a5e11770a50865347103027116c41b4ce
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - steward
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: steward
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/steward-0.1.0.tgz
+    version: 0.1.0
+  webhooks:
+  - apiVersion: v1
+    created: 2018-05-23T17:17:54.065878441+03:00
+    description: elastic.io webhooks
+    digest: b9a08bd037ac3c892298ce7393ab582b6e230e01bef1c0c31830bc18aac48a00
+    engine: gotpl
+    home: http://elastic.io
+    icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
+    keywords:
+    - webhooks
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: ghaiklor@gmail.com
+      name: Eugene Obrezkov
+      url: http://ghaiklor.com
+    name: webhooks
+    tillerVersion: '>=2.9.0'
+    urls:
+    - https://helm-charts.elastic.io/webhooks-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-05-23T17:17:54.061529395+03:00

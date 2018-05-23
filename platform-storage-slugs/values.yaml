@@ -1,6 +1,5 @@
 replicas: 1
 envFromSecretRefName: elasticio
-loadBalancerIP: 0.0.0.0
 
 image:
   tag: master
