@@ -1,35 +1,33 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: eio-fluentd
+  name: {{ .Chart.Name }}
   labels:
-    heritage: '{{ .Release.Service }}'
-    release: '{{ .Release.Name }}'
-    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
-    component: fluentd
-    app: eio-fluentd
+    app: {{ .Chart.Name }}
+    component: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   selector:
     matchLabels:
-      app: eio-fluentd
+      app: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: eio-fluentd
+        app: {{ .Chart.Name }}
+        release: {{ .Release.Name }}
     spec:
       containers:
+        name: {{ .Chart.Name }}
+        image: elasticio/fluentd-kubernetes-gelf:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
       - envFrom:
         - secretRef:
-            name: elasticio
-        image: elasticio/fluentd-kubernetes-gelf
-        imagePullPolicy: IfNotPresent
-        name: eio-fluentd
+            name: {{ .Values.envFromSecretRefName }}
         resources:
-          limits:
-            memory: 512Mi
-          requests:
-            cpu: 100m
-            memory: 512Mi
+{{ toYaml .Values.resources | indent 10 }}
         terminationMessagePath: "/dev/termination-log"
         terminationMessagePolicy: File
         volumeMounts:
@@ -38,7 +36,7 @@ spec:
         - mountPath: "/var/lib/docker/containers"
           name: varlibdockercontainers
           readOnly: true
-      serviceAccountName: eio-fluentd-account
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

@@ -1,0 +1,19 @@
+envFromSecretRefName: elasticio
+
+image:
+  tag: latest
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 512Mi
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name: eio-fluentd-account
