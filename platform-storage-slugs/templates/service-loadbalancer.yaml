@@ -1,20 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: {{ .Chart.Name }}-loadbalancer
   labels:
-    heritage: '{{ .Release.Service }}'
-    release: '{{ .Release.Name }}'
-    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
-    component: platform-storage-slugs
-    app: platform-storage-slugs-loadbalancer
+    app: {{ .Chart.Name }}-loadbalancer
+    component: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
   annotations:
     cloud.google.com/load-balancer-type: Internal
-  name: platform-storage-slugs-loadbalancer
 spec:
   type: LoadBalancer
-  loadBalancerIP: '{{ .Values.loadBalancerIP }}'
+  loadBalancerIP: {{ required "You must provide load balancer IP for slugs storage" .Values.loadBalancerIP }}
   selector:
-    app: platform-storage-slugs
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
   ports:
   - name: '9999'
     port: 9999

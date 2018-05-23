@@ -1,1 +1,23 @@
-revision: master
+replicas: 1
+envFromSecretRefName: elasticio
+loadBalancerIP: 0.0.0.0
+
+image:
+  tag: master
+  pullPolicy: Always
+  pullSecretName: elasticiodevops
+
+resources:
+  limits:
+    memory: 512Mi
+    cpu: 0.5
+  requests:
+    memory: 256Mi
+    cpu: 0.1
+
+nodeSelector:
+  elasticio-role: platform
+
+volume:
+  claimName: platform-storage-slugs-volume-claim
+  storageClassName: manual
