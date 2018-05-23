@@ -1,33 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gitreceiver
+  name: {{ .Chart.Name }}
   labels:
-    heritage: '{{ .Release.Service }}'
-    release: '{{ .Release.Name }}'
-    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
-    component: gitreceiver
-    app: gitreceiver
+    app: {{ .Chart.Name }}
+    component: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: gitreceiver
+      app: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
   template:
     metadata:
-      name: gitreceiver
+      name: {{ .Chart.Name }}
       labels:
-        app: gitreceiver
+        app: {{ .Chart.Name }}
+        release: {{ .Release.Name }}
     spec:
       containers:
-      - name: gitreceiver
-        image: 'elasticio/gitreceiver:{{ .Values.revision | default "master" }}'
+      - name: {{ .Chart.Name }}
+        image: elasticio/gitreceiver:{{ .Values.image.tag }}
         envFrom:
         - secretRef:
-            name: elasticio
+            name: {{ .Values.envFromSecretRefName }}
         env:
         - name: APP_NAME
-          value: gitreceiver
+          value: {{ .Chart.Name }}
         - name: LOG_LEVEL
           value: trace
         - name: APPBUILDER_IMAGE
@@ -37,7 +39,7 @@ spec:
         - name: WEBDAV_URL
           valueFrom:
             secretKeyRef:
-              name: elasticio
+              name: {{ .Values.envFromSecretRefName }}
               key: SLUG_BASE_URL
         - name: GELF_ADDRESS
           value: "$(GELF_PROTOCOL)://$(GELF_HOST):$(GELF_PORT)"
@@ -47,15 +49,10 @@ spec:
           tcpSocket:
             port: 4022
         resources:
-          limits:
-            memory: 512Mi
-            cpu: 0.5
-          requests:
-            memory: 256Mi
-            cpu: 0.1
+{{ toYaml .Values.resources | indent 10 }}
         terminationMessagePath: "/dev/termination-log"
         terminationMessagePolicy: File
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           privileged: true
         volumeMounts:
@@ -67,11 +64,11 @@ spec:
           path: "/var/run/docker.sock"
           type: File
       imagePullSecrets:
-      - name: elasticiodevops
+      - name: {{ .Values.image.pullSecretName }}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        elasticio-role: '{{ .Release.Namespace }}'
+{{ toYaml .Values.nodeSelector | indent 8 }}
   strategy:
     type: RollingUpdate
     rollingUpdate:

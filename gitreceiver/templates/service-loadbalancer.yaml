@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: {{ .Chart.Name }}-loadbalancer
   labels:
-    heritage: '{{ .Release.Service }}'
-    release: '{{ .Release.Name }}'
-    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
-    component: gitreceiver
-    app: gitreceiver-loadbalancer
-  name: gitreceiver-loadbalancer
-  namespace: platform
+    app: {{ .Chart.Name }}-loadbalancer
+    component: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   type: LoadBalancer
-  loadBalancerIP: '{{ .Values.loadBalancerIP }}'
+  loadBalancerIP: {{ required "You need provide load balancer IP for gitreceiver" .Values.loadBalancerIP }}
   selector:
-    app: gitreceiver
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
   ports:
-  - name: gitreceiver
+  - name: {{ .Chart.Name }}-4022
     port: 22
     protocol: TCP
     targetPort: 4022
