@@ -20,3 +20,6 @@ rbac:
 serviceAccount:
   create: true
   name: admiral-account
+
+nodeSelector:
+  elasticio-role: platform

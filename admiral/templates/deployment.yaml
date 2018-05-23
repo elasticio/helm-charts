@@ -50,21 +50,19 @@ spec:
             port: 12000
             path: "/healthcheck"
         resources:
-          {{ toYaml .Values.resources | indent 10 }}
+{{ toYaml .Values.resources | indent 10 }}
         terminationMessagePath: "/dev/termination-log"
         terminationMessagePolicy: File
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           privileged: false
-          {{- if .Values.serviceAccount.create }}
       serviceAccountName: {{ .Values.serviceAccount.name }}
-          {{- end }}
       imagePullSecrets:
       - name: {{ .Values.image.pullSecretName }}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        elasticio-role: platform
+{{ toYaml .Values.nodeSelector | indent 8 }}
   strategy:
     type: RollingUpdate
     rollingUpdate:

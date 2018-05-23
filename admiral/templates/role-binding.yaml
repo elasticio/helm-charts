@@ -1,3 +1,4 @@
+{{- if .Values.rbac.create -}}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -9,5 +10,5 @@ roleRef:
   name: admiral-role
 subjects:
 - kind: ServiceAccount
-  name: admiral-account
-  namespace: '{{ .Release.Namespace }}'
+  name: {{ .Values.serviceAccount.name }}
+{{- end -}}
