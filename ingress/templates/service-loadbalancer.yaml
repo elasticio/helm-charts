@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    heritage: '{{ .Release.Service }}'
-    release: '{{ .Release.Name }}'
-    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
-    component: ingress
-    app: ingress-loadbalancer
   name: ingress-loadbalancer
+  labels:
+    app: ingress-loadbalancer
+    component: ingress
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   type: LoadBalancer
-  loadBalancerIP: '{{ .Values.loadBalancerIP }}'
+  loadBalancerIP: {{ required "You must provide load balancer IP for ingress" .Values.loadBalancerIP }}
   selector:
     app: ingress-nginx
   ports:

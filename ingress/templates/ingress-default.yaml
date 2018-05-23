@@ -8,30 +8,30 @@ spec:
   tls:
   - secretName: ingress-elasticio-cert
     hosts:
-    - app-westeros.elastic.io
-    - api-westeros.elastic.io
-    - in-westeros.elastic.io
-    - petstore-westeros.elastic.io
+    - {{ .Values.hosts.app.uri }}
+    - {{ .Values.hosts.api.uri }}
+    - {{ .Values.hosts.webhooks.uri }}
+    - {{ .Values.hosts.petstore.uri }}
   rules:
-  - host: api-westeros.elastic.io
+  - host: {{ .Values.hosts.api.uri }}
     http:
       paths:
       - backend:
           serviceName: api-service
           servicePort: 9000
-  - host: app-westeros.elastic.io
+  - host: {{ .Values.hosts.app.uri }}
     http:
       paths:
       - backend:
           serviceName: frontend-service
           servicePort: 8000
-  - host: in-westeros.elastic.io
+  - host: {{ .Values.hosts.webhooks.uri }}
     http:
       paths:
       - backend:
           serviceName: webhooks-service
           servicePort: 5000
-  - host: petstore-westeros.elastic.io
+  - host: {{ .Values.hosts.petstore.uri }}
     http:
       paths:
       - backend:
