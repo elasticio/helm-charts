@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   admiral:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.669186317+03:00
+    created: 2018-05-23T13:02:50.286922927+03:00
     description: The commander of the elastic.io fleet
     digest: b42f7ca20006696a59cec8c9695d860dfa0293028a35ba053b6b6a9dd9d8b783
     engine: gotpl
@@ -22,9 +22,9 @@ entries:
     version: 0.1.0
   api:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.669428337+03:00
+    created: 2018-05-23T13:02:50.287226907+03:00
     description: API for elastic.io Cloud Integration Platform
-    digest: 3b5d01814bef24b1378dd65c229836503557fa000a5d8a4065c0a7985151b194
+    digest: 37b2cf6e3e8ef568cd6a6bf4b8100fa62768b2c84e521bfa3cdb8521dba463a5
     engine: gotpl
     home: http://elastic.io
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -42,9 +42,9 @@ entries:
     version: 0.1.0
   cluster:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.671074353+03:00
+    created: 2018-05-23T13:02:50.289269891+03:00
     description: The whole installation of all required apps for the elastic.io cluster
-    digest: e291a3e43ba0563619617ea898cbdbd72666a46fc3536f899cf9a51b99e566a6
+    digest: 98228385bf999d148c69b56bbf7bc3baea9fe45a6ce95dc2d1f3e03e7aa6d4dc
     engine: gotpl
     home: http://elastic.io
     icon: https://elastic.io/wp-content/themes/x-child-onix/images/elastic-red-cloud.svg
@@ -62,7 +62,7 @@ entries:
     version: 0.1.0
   fluentd:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.671301694+03:00
+    created: 2018-05-23T13:02:50.289545383+03:00
     description: Fluentd is an open source data collector for collecting logs from
       our services
     digest: 54ba80687aa4f56c15ba430e548be20d3e837479c85a5e1a580a8008dcaa3928
@@ -83,7 +83,7 @@ entries:
     version: 0.1.0
   frontend:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.671517935+03:00
+    created: 2018-05-23T13:02:50.289785943+03:00
     description: elastic.io frontend
     digest: e64ed714e658cf00c8a42b8dc48e621a93c8038c679f4582c7d6a1ece5515016
     engine: gotpl
@@ -103,7 +103,7 @@ entries:
     version: 0.1.0
   gitreceiver:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.671753442+03:00
+    created: 2018-05-23T13:02:50.290023905+03:00
     description: Docker image that receives git pushes
     digest: 2f699af705f61fdbb8b816fde17454a2ff6bda463b53e5346685890394e31cf0
     engine: gotpl
@@ -123,7 +123,7 @@ entries:
     version: 0.1.0
   ingress:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.672046005+03:00
+    created: 2018-05-23T13:02:50.290319993+03:00
     description: elastic.io loadbalancer based on Ingress controller
     digest: 9c4c65fb3571083c6b702a7d551ccc615ab809f5b2117d852e63c3a419721f70
     engine: gotpl
@@ -143,7 +143,7 @@ entries:
     version: 0.1.0
   lookout:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.672260515+03:00
+    created: 2018-05-23T13:02:50.290545617+03:00
     description: A multiplexer for gathering execution statistics across all flow
       executions
     digest: 97588405e94f05de7191e416ce0a11ed6b04f778a365042172c517b36ff71ac1
@@ -164,7 +164,7 @@ entries:
     version: 0.1.0
   platform-storage-slugs:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.67250657+03:00
+    created: 2018-05-23T13:02:50.29082003+03:00
     description: Slugs storage for the elastic.io platform
     digest: 5d14d40095cbd7e858b639cefe3a769ed743e2e700258cf6d47d8e23ab9acd87
     engine: gotpl
@@ -184,7 +184,7 @@ entries:
     version: 0.1.0
   scheduler:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.672727911+03:00
+    created: 2018-05-23T13:02:50.291044848+03:00
     description: elastic.io scheduler for polling flows
     digest: fc6bc7cded2c7067598d8b9f10078d4488211c159a5ed1fff678d33cfc2c6552
     engine: gotpl
@@ -204,7 +204,7 @@ entries:
     version: 0.1.0
   steward:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.672955172+03:00
+    created: 2018-05-23T13:02:50.291290989+03:00
     description: API for elastic.io files storage
     digest: 3c8929b15db47e10e04a2b4c861f5679826060f53b9d7dfdfe799c098f993564
     engine: gotpl
@@ -224,7 +224,7 @@ entries:
     version: 0.1.0
   webhooks:
   - apiVersion: v1
-    created: 2018-05-23T12:52:09.673179946+03:00
+    created: 2018-05-23T13:02:50.291521858+03:00
     description: elastic.io webhooks
     digest: 89cfd9451c44f633ef2126bdf01be400a2424a6d7e608a91c9e186a7b7088f17
     engine: gotpl
@@ -242,4 +242,4 @@ entries:
     urls:
     - https://helm-charts.elastic.io/webhooks-0.1.0.tgz
     version: 0.1.0
-generated: 2018-05-23T12:52:09.668651502+03:00
+generated: 2018-05-23T13:02:50.286341205+03:00
