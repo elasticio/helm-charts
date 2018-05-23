@@ -1,0 +1,8 @@
+tasksNamespaceName: tasks
+envFromSecretRefName: elasticio
+
+docker:
+  registry: ''
+  username: ''
+  password: ''
+  secretName: elasticiodevops

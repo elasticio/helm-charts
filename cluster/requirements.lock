@@ -14,9 +14,6 @@ dependencies:
 - name: gitreceiver
   repository: file://../gitreceiver
   version: 0.1.0
-- name: ingress
-  repository: file://../ingress
-  version: 0.1.0
 - name: lookout
   repository: file://../lookout
   version: 0.1.0
@@ -32,5 +29,5 @@ dependencies:
 - name: webhooks
   repository: file://../webhooks
   version: 0.1.0
-digest: sha256:cf16c9cb2b2f85a17657f8c46d4855e6868bf7f7bcad442ef0bb8396dafbb4c3
-generated: 2018-05-19T18:02:42.70111536+03:00
+digest: sha256:573f5bd0c8b4e002be37f4ea9e59eaace9d834a4b08025287b775888741a2645
+generated: 2018-05-23T15:32:07.32965631+03:00
