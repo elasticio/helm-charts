@@ -1,1 +1,18 @@
-revision: master
+replicas: 2
+envFromSecretRefName: elasticio
+
+image:
+  tag: master
+  pullPolicy: Always
+  pullSecretName: elasticiodevops
+
+resources:
+  limits:
+    memory: 512Mi
+    cpu: 0.2
+  requests:
+    memory: 512Mi
+    cpu: 0.1
+
+nodeSelector:
+  elasticio-role: platform
