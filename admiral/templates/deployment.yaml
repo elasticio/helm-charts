@@ -42,7 +42,7 @@ spec:
         - name: KUBERNETES_TASKS_NODE_LABEL_KEY
           value: elasticio-role
         - name: KUBERNETES_TASKS_NODE_LABEL_VALUE
-          value: tasks
+          value: {{ .Values.global.tasksNamespaceName | default "tasks" }}
         livenessProbe:
           initialDelaySeconds: 10
           periodSeconds: 3
