@@ -1,7 +1,7 @@
 apiVersion: v1
 name: admiral
 version: "0.1.0"
-kubeVersion: ">=1.9.0"
+kubeVersion: ">1.9.0"
 description: The commander of the elastic.io fleet
 keywords:
   - admiral
