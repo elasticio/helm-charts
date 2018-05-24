@@ -20,10 +20,10 @@ spec:
         release: {{ .Release.Name }}
     spec:
       containers:
-        name: {{ .Chart.Name }}
+      - name: {{ .Chart.Name }}
         image: elasticio/fluentd-kubernetes-gelf:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-      - envFrom:
+        envFrom:
         - secretRef:
             name: {{ .Values.envFromSecretRefName }}
         resources:
