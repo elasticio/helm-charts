@@ -1,7 +1,6 @@
 apiVersion: v1
 name: lookout
 version: "0.1.0"
-kubeVersion: ">=1.10.0"
 description: A multiplexer for gathering execution statistics across all flow executions
 keywords:
   - lookout
