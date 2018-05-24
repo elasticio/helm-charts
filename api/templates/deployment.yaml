@@ -33,7 +33,7 @@ spec:
         - name: LOG_LEVEL
           value: trace
         - name: PORT_API
-          value: 9000
+          value: '9000'
         - name: MARATHON_URI
           value: http://mazafaka.io/this-env-var-is-deprecated-but-still-required-by-v1
         livenessProbe:
