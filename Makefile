@@ -26,7 +26,7 @@ build: build-steward build-webhooks
 build-%:
 	if [ -f $*/requirements.yaml ]; then helm dependency update $*; fi
 	helm package -d docs $*
-	helm repo index docs --url https://helm-charts.elastic.io
+	helm repo index docs --url https://docs.elastic.io/helm-charts
 
 clean:
 	find . -name "*.tgz" -exec rm '{}' +
