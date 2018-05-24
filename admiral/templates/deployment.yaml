@@ -31,7 +31,7 @@ spec:
         - name: APP_NAME
           value: {{ .Chart.Name }}
         - name: PORT_ADMIRAL
-          value: 12000
+          value: '12000'
         - name: LOG_LEVEL
           value: trace
         - name: RABBITMQ_URI
