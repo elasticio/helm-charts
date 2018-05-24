@@ -1,6 +1,9 @@
 replicas: 1
 envFromSecretRefName: elasticio
 
+global:
+  tasksNamespaceName: tasks
+
 image:
   tag: master
   pullPolicy: Always
